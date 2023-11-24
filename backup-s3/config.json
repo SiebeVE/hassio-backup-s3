@@ -1,6 +1,6 @@
 {
   "name": "Backup S3",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "slug": "backup_s3",
   "description": "Backup config to S3 bucket",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
@@ -9,12 +9,18 @@
   "options": {
     "awskey": "",
     "awssecret": "",
-    "bucketname": ""
+    "bucketname": "",
+    "endpoint": "",
+    "region": "",
+    "profile": "backup"
   },
   "schema": {
     "awskey": "str",
     "awssecret": "str",
-    "bucketname": "str"
+    "bucketname": "str",
+    "endpoint": "str",
+    "region": "str",
+    "profile": "str"
   },
   "map": ["backup:rw"]
 }
