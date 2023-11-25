@@ -7,10 +7,10 @@ ENDPOINT=`jq -r .endpoint /data/options.json`
 REGION=`jq -r .region /data/options.json`
 PROFILE=`jq -r .profile /data/options.json`
 
-MOST_RECENT_FILE=$(ls -lt | awk 'NR==2{print $9}')
+MOST_RECENT_FILE=$(ls -lt /backup | awk 'NR==2{print $9}')
 
-ls -lt
-ls -lt | awk 'NR==2{print $9}'
+ls -lt /backup
+ls -lt /backup | awk 'NR==2{print $9}'
 echo $MOST_RECENT_FILE
 
 PROFILE_CONTENT="[profile $PROFILE]
