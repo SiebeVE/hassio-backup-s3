@@ -24,6 +24,10 @@ s3api =
 mkdir -p ~/.aws
 echo $PROFILE_CONTENT > ~/.aws/config
 
+cat $PROFILE_CONTENT
+
+echo "aws s3 cp /backup/$MOST_RECENT_FILE s3://$BUCKET --profile $PROFILE --storage-class GLACIER"
+
 now="$(date +'%d/%m/%Y - %H:%M:%S')"
 
 echo $now
