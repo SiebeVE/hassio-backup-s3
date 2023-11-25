@@ -5,13 +5,9 @@ SECRET=`jq -r .awssecret /data/options.json`
 BUCKET=`jq -r .bucketname /data/options.json`
 ENDPOINT=`jq -r .endpoint /data/options.json`
 REGION=`jq -r .region /data/options.json`
-PROFILE=`jq -r .profile /data/options.json`
+PROFILE="backup"
 
 MOST_RECENT_FILE=$(ls -lt /backup | awk 'NR==2{print $9}')
-
-ls -lt /backup
-ls -lt /backup | awk 'NR==2{print $9}'
-echo $MOST_RECENT_FILE
 
 PROFILE_CONTENT="[profile $PROFILE]
 region = $REGION
@@ -27,14 +23,10 @@ s3api =
 
 mkdir -p ~/.aws
 echo $PROFILE_CONTENT > ~/.aws/config
+echo $KEY
+echo $SECRET
 
-cat ~/.aws/config
-
-echo "aws s3 cp /backup/$MOST_RECENT_FILE s3://$BUCKET --profile $PROFILE --storage-class GLACIER"
-
-now="$(date +'%d/%m/%Y - %H:%M:%S')"
-
-echo $now
+aws get-endpoint --profile $PROFILE
 
 aws configure set aws_access_key_id $KEY --profile $PROFILE
 aws configure set aws_secret_access_key $SECRET --profile $PROFILE

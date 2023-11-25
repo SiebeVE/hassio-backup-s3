@@ -12,16 +12,14 @@
     "awssecret": "",
     "bucketname": "",
     "endpoint": "",
-    "region": "",
-    "profile": "backup"
+    "region": ""
   },
   "schema": {
     "awskey": "str",
     "awssecret": "str",
     "bucketname": "str",
     "endpoint": "str",
-    "region": "str",
-    "profile": "str"
+    "region": "str"
   },
   "map": ["backup:rw"]
 }
