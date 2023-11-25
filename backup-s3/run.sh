@@ -5,32 +5,17 @@ SECRET=`jq -r .awssecret /data/options.json`
 BUCKET=`jq -r .bucketname /data/options.json`
 ENDPOINT=`jq -r .endpoint /data/options.json`
 REGION=`jq -r .region /data/options.json`
-PROFILE="backup"
+
+AWS_IGNORE_CONFIGURED_ENDPOINT_URLS=true
+AWS_ENDPOINT_URL=$ENDPOINT
 
 MOST_RECENT_FILE=$(ls -lt /backup | awk 'NR==2{print $9}')
 
-PROFILE_CONTENT="[profile $PROFILE]
-region = $REGION
-s3 =
-  endpoint_url = $ENDPOINT
-  signature_version = s3v4
-  max_concurrent_requests = 100
-  max_queue_size = 1000
-  multipart_threshold = 50MB
-  multipart_chunksize = 10MB
-s3api =
-  endpoint_url = $ENDPOINT"
-
 mkdir -p ~/.aws
-echo $PROFILE_CONTENT > ~/.aws/config
-echo $KEY
-echo $SECRET
 
-aws get-endpoint --profile $PROFILE
+aws configure set aws_access_key_id $KEY
+aws configure set aws_secret_access_key $SECRET
 
-aws configure set aws_access_key_id $KEY --profile $PROFILE
-aws configure set aws_secret_access_key $SECRET --profile $PROFILE
-
-aws s3 cp /backup/$MOST_RECENT_FILE s3://$BUCKET --profile $PROFILE --storage-class GLACIER
+aws s3 cp /backup/$MOST_RECENT_FILE s3://$BUCKET --storage-class GLACIER
 
 echo "Done"
