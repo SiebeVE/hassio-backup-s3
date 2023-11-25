@@ -9,6 +9,10 @@ PROFILE=`jq -r .profile /data/options.json`
 
 MOST_RECENT_FILE=$(ls -lt | awk 'NR==2{print $9}')
 
+ls -lt
+ls -lt | awk 'NR==2{print $9}'
+echo $MOST_RECENT_FILE
+
 PROFILE_CONTENT="[profile $PROFILE]
 region = $REGION
 s3 =
@@ -24,7 +28,7 @@ s3api =
 mkdir -p ~/.aws
 echo $PROFILE_CONTENT > ~/.aws/config
 
-cat $PROFILE_CONTENT
+cat ~/.aws/config
 
 echo "aws s3 cp /backup/$MOST_RECENT_FILE s3://$BUCKET --profile $PROFILE --storage-class GLACIER"
 
