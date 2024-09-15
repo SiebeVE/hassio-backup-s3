@@ -15,7 +15,7 @@
   },
   "schema": {
     "awskey": "str",
-    "awssecret": "str",
+    "awssecret": "password",
     "bucketname": "str",
     "storageclass": "str"
   },

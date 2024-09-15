@@ -7,6 +7,9 @@ STORAGE_CLASS=`jq -r .storageclass /data/options.json`
 
 MOST_RECENT_FILE=$(ls -lt /backup | awk 'NR==2{print $9}')
 
+# Start venv
+source ./venv/bin/activate
+
 mkdir -p ~/.aws
 
 aws configure set aws_access_key_id $KEY
