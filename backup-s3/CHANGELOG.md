@@ -1,5 +1,8 @@
 # Changelog
 
+# 3.1.1
+- Set changelog to addon folder
+
 # 3.1.0
 - Configure v env in run.sh and set secret as password
 
