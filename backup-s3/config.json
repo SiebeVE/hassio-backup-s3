@@ -1,20 +1,23 @@
 {
   "name": "Backup S3",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "slug": "backup_s3",
   "description": "Backup config to S3 bucket",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "once",
   "boot": "auto",
+  "init": false,
   "options": {
     "awskey": "",
     "awssecret": "",
-    "bucketname": ""
+    "bucketname": "",
+    "storageclass": "DEEP_ARCHIVE"
   },
   "schema": {
     "awskey": "str",
     "awssecret": "str",
-    "bucketname": "str"
+    "bucketname": "str",
+    "storageclass": "str"
   },
   "map": ["backup:rw"]
 }
